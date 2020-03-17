@@ -1,6 +1,6 @@
 <?php
 
-//we are working with JSON, so we need to modifu the header
+//we are working with JSON, so we need to modify the header
 
 header('Content-Type: application/json');
 
@@ -15,4 +15,10 @@ if ($method === 'post') {
     http_response_code(400);
     die('This is my custom error message. Something is wrong');
   }
+  $todo = $db->prepare("INSERT INTO todos (task) VALUES (:task)");
+  $todo->execute([
+    'task' => $_POST['task'],
+  ]);
+  http_response_code(200);
+  die('All cool, all done');
 }
