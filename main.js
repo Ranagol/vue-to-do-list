@@ -12,13 +12,23 @@ new Vue({
   methods: {
     createTask(){
       this.tasks.unshift({
-        id: Date.now(),
         task: this.task, 
-        completed: false
+        //completed: false
       });
       this.task = '';
       //https://www.w3schools.com/jsref/prop_win_localstorage.asp
       localStorage.setItem('tasks', JSON.stringify(this.tasks));//with this, we are also storing our tasks array in our browsers localstore(/Inspect/Application/Storage/Local storage), underr key 'tasks'
+
+      //api call
+      $.ajax({
+        url: '04-Random_testing/vue-to-do-list/todo.php',
+        type: 'post',
+        cache: false,
+        data: {
+          task: this.task
+        }
+
+      });
     },
 
     removeTask(task){
