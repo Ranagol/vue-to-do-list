@@ -19,16 +19,6 @@ new Vue({
       //https://www.w3schools.com/jsref/prop_win_localstorage.asp
       localStorage.setItem('tasks', JSON.stringify(this.tasks));//with this, we are also storing our tasks array in our browsers localstore(/Inspect/Application/Storage/Local storage), underr key 'tasks'
 
-      //api call
-      $.ajax({
-        url: '04-Random_testing/vue-to-do-list/todo.php',
-        type: 'post',
-        cache: false,
-        data: {
-          task: this.task
-        }
-
-      });
     },
 
     removeTask(task){
@@ -37,7 +27,6 @@ new Vue({
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
     },
 
-    
     created(){
       this.tasks = JSON.parse(localStorage.getItem('tasks'));//when the page is created, check if we have tasks in local store, and get them to our tasks in data. OR If there is no tasks in the local store, then use an empty array.
     }
